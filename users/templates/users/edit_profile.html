@@ -1,0 +1,20 @@
+{%extends 'search/base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Edit Profile</legend>
+        {{u_form|crispy}}
+        <h2>Details</h2>
+        <p>{{p_form.age|as_crispy_field}}</p>
+        <p>{{p_form.blood_group|as_crispy_field}}</p>
+    </fieldset>
+    <input type="submit" value="save">
+</form>
+<div style="padding-top: 2rem;">
+    <small>
+    <a href="{%url 'users:profile'%}">Cancel</a>
+    </small>
+</div>
+{%endblock content%}

@@ -1,0 +1,7 @@
+{%extends 'search/base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<h1>{{form|crispy}}</h1>
+<img src="/media/prescription/{{form}}" alt="">
+
+{%endblock content%}

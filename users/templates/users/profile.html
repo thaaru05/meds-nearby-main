@@ -1,0 +1,21 @@
+{%extends 'search/base.html' %}
+{% block content%}
+<div class="form_">
+    <legend><h3 class="head">User profile</h3></legend>
+    <p>Name:{{user.username}}</p>
+    <p>Email:{{user.email}}</p>
+    <p>Blood Group:{{user.personaldetails.blood_group}}</p>
+    <p>Age:{{user.personaldetails.age}}</p>
+    <p>Phone number:{{user.personaldetails.phone_no}}</p>
+    <p>Address:{{user.personaldetails.address}}</p>
+</div>
+
+<div class='btm'>
+    <div>
+        <a href="{% url 'users:edit' %}">Edit Profile</a>
+    </div>
+    <div>
+        <a href="{%url 'password_reset' %}">Change Password</a>
+    </div>
+</div>
+{%endblock content%}

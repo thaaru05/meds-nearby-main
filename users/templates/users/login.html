@@ -1,0 +1,25 @@
+{%extends 'search/base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<div class="form_">
+    <form action="" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Login</legend>
+            {{form|crispy}}
+        </fieldset>
+        <input type="submit" value="login">
+    </form>
+
+    <div class="btm">
+        <div>
+            <small>
+                Need an Account? <a href="{%url 'users:register'%}">Sign Up</a>
+                <br>
+                <a href="{%url 'password_reset' %}">forgot password?</a>
+             </small>
+        </div>
+        
+    </div>
+</div>
+{%endblock content%}

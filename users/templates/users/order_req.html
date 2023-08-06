@@ -1,0 +1,18 @@
+{% autoescape off %}
+This mail is to request an order for the medicine {{med_name}}.
+The order detail:
+medicine:{{med_name}}
+quantity:{{quantity}}
+
+The customer detail:
+Name: {{user.username}}
+Address:{{address}}
+Phone Number:{{phone_no}}
+email_id : {{email}}
+
+An image containing the prescription is attached.
+please do verify the placement of order by sending an email to the customer with payment details.
+
+With regards,
+MedsNearby
+{% endautoescape %}

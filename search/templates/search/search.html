@@ -1,0 +1,81 @@
+{%extends 'search/base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<form action="" method="post">
+  {% csrf_token %}
+  <fieldset>
+    <legend><h3 class="head">Search pharmacies</h3></legend>
+    {{form|crispy}}
+  </fieldset>
+  <input type="submit" value="search" />
+</form>
+{%if result%}
+<h3 class="head">Pharmacy Details</h3>
+<div class="grid_">
+  <div>S.No</div>
+  <div>Name</div>
+  <div>Medicine Price(per unit in Rs)</div>
+  <div>Pharmacy Phone Number</div>
+  <div>Address</div>
+  <div>Distane</div>
+  <div>Direction</div>
+  <div>Request Order</div>
+  {%for pharma in result %}
+      <div>{{forloop.counter}}</div>
+      <div>{{pharma.name}}</div>
+      <div>{{pharma.price}}</div>
+      <div>{{pharma.ph}}</div>
+      <div>{{pharma.address}}</div>
+      <div>{{pharma.distance}}</div>
+      <div>
+        <form action="{%url 'map:direction'%}" method="post">
+          {% csrf_token %}
+          {{pharma.coord}}
+          <input type="submit" value="Direction"/>
+        </form>
+      </div>
+      <div>
+        <a href="{% url 'users:request_order' medicine_name pharma.email pharma.name %}">Request Order</a>
+      </div>
+ 
+    {%endfor%}
+</div>
+<!--
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>name</th>
+      <th>medicine price</th>
+      <th>ph no</th>
+      <th>address</th>
+      <th>distane</th>
+      <th>direction</th>
+      <th>request order</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for pharma in result %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{pharma.name}}</td>
+      <td>{{pharma.price}}</td>
+      <td>{{pharma.ph}}</td>
+      <td>{{pharma.address}}</td>
+      <td>{{pharma.distance}}</td>
+      <td>
+        <form action="{%url 'map:direction'%}" method="post">
+          {% csrf_token %}
+          {{pharma.coord}}
+          <input type="submit" value="direction"/>
+        </form>
+      </td>
+      <td><a href="{% url 'users:request_order' medicine_name pharma.email pharma.name %}">request order</a></td>
+    </tr>
+
+    {%endfor%}
+  </tbody>
+</table>-->
+{% endif%} 
+{%endblock content%}
+<!--{{med_name}}/{{pharma.email}}-->
